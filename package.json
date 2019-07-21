@@ -1,0 +1,14 @@
+{
+  "name": "graphql-examples",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
+  "scripts": {
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|md|mdx|graphql)\"",
+    "format": "yarn prettier -- --write"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}

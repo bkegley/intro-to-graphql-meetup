@@ -1,0 +1,25 @@
+type Person {
+  id: ID!
+  firstName: String
+  lastName: String
+  fullName: String
+  email: String
+  pets: [Pet]
+}
+
+type Pet {
+  id: ID!
+  name: String
+  type: PetType
+}
+
+enum PetType {
+  dog
+  cat
+  turtle
+}
+
+type Query {
+  getPerson(id: ID!): Person
+  listPersons: [Person]
+}

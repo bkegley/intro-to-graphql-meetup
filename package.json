@@ -1,7 +1,8 @@
 {
   "name": "graphql-examples",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "functions/*"
   ],
   "private": true,
   "scripts": {

@@ -4,5 +4,11 @@
   "description": "Auth GraphQL server",
   "main": "src/index.js",
   "author": "Bryan Kegley <hi@bryankegley.me>",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "nohoist": [
+      "**"
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "graphql-auth",
+  "name": "graphql-pokemon",
   "version": "0.1.0",
-  "description": "Auth GraphQL server",
+  "description": "Pokemon GraphQL server",
   "main": "src/index.js",
   "author": "Bryan Kegley <hi@bryankegley.me>",
   "license": "MIT",
@@ -12,11 +12,8 @@
     ]
   },
   "dependencies": {
-    "apollo-link-http": "^1.5.15",
     "apollo-server-lambda": "^2.7.0",
-    "graphql": "^14.4.2",
     "graphql-import-node": "^0.0.4",
-    "graphql-tools": "^4.0.5",
-    "node-fetch": "^2.6.0"
+    "pokedex-promise-v2": "^3.2.0"
   }
 }

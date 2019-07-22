@@ -1,0 +1,22 @@
+type Pokemon {
+  id: ID
+  name: String
+  base_experience: Int
+  height: Int
+  is_default: Boolean
+  order: Int
+  weight: Int
+  url: String
+}
+
+type PokemonConnection {
+  count: Int
+  next: String
+  previous: String
+  results: [Pokemon]
+}
+
+type Query {
+  getPokemon(id: ID!): Pokemon
+  listPokemons(limit: Int, offset: Int): PokemonConnection
+}

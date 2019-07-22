@@ -5,6 +5,7 @@ type Person {
   fullName: String
   email: String
   pets: [Pet]
+  pokemonId: ID!
 }
 
 type Pet {

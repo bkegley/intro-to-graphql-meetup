@@ -1,0 +1,4 @@
+extend type Person {
+  secret: String
+  something: String
+}

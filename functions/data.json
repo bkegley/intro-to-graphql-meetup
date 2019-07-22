@@ -1,0 +1,39 @@
+{
+  "persons": [
+    {
+      "id": 1,
+      "firstName": "Jack",
+      "lastName": "Johnson",
+      "email": "jack@johnson.com",
+      "pets": [1],
+      "secret": "hello",
+      "pokemondId": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Jack",
+      "lastName": "Sparrow",
+      "email": "jack@blackpearl.net",
+      "pets": [2, 3],
+      "secret": "this is a secret"
+    }
+  ],
+
+  "pets": [
+    {
+      "id": 1,
+      "name": "Jacky Boy",
+      "type": "dog"
+    },
+    {
+      "id": 2,
+      "name": "Whiskers",
+      "type": "cat"
+    },
+    {
+      "id": 3,
+      "name": "Speedy",
+      "type": "turtle"
+    }
+  ]
+}

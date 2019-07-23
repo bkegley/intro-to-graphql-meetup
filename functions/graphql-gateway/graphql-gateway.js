@@ -5,11 +5,11 @@ const gateway = new ApolloGateway({
   serviceList: [
     {
       name: 'persons',
-      url: `${process.env.URL}/.netlify/functions/graphql-simple`,
+      url: `${process.env.URL}/.netlify/functions/federated-graphql-simple`,
     },
     {
       name: 'pokemon',
-      url: `${process.env.URL}/.netlify/functions/graphql-pokemon`,
+      url: `${process.env.URL}/.netlify/functions/federated-graphql-pokemon`,
     },
   ],
 })

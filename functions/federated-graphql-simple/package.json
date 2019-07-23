@@ -1,7 +1,7 @@
 {
-  "name": "graphql-pokemon",
+  "name": "federated-graphql-simple",
   "version": "0.1.0",
-  "description": "Pokemon GraphQL server",
+  "description": "Simple GraphQL server",
   "main": "src/index.js",
   "author": "Bryan Kegley <hi@bryankegley.me>",
   "license": "MIT",
@@ -12,8 +12,10 @@
     ]
   },
   "dependencies": {
+    "@apollo/federation": "^0.7.0",
     "apollo-server-lambda": "^2.7.0",
+    "graphql": "^14.4.2",
     "graphql-import-node": "^0.0.4",
-    "pokedex-promise-v2": "^3.2.0"
+    "lodash.merge": "^4.6.2"
   }
 }

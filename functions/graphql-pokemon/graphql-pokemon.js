@@ -1,29 +1,14 @@
 require('graphql-import-node/register')
 const {ApolloServer} = require('apollo-server-lambda')
-const {buildFederatedSchema} = require('@apollo/federation')
 
-// const schema = require('./schema.graphql')
-const schema = require('./federatedSchema.graphql')
-// const resolvers = require('./resolvers')
-const resolvers = require('./federatedResolvers')
+const schema = require('./schema.graphql')
+const resolvers = require('./resolvers')
 const data = require('../data.json')
 
 exports.handler = async function(event, context) {
-  // const server = new ApolloServer({
-  //   typeDefs: schema,
-  //   resolvers,
-  //   context: () => ({
-  //     data,
-  //   }),
-  // })
-
   const server = new ApolloServer({
-    schema: buildFederatedSchema([
-      {
-        typeDefs: schema,
-        resolvers,
-      },
-    ]),
+    typeDefs: schema,
+    resolvers,
     context: () => ({
       data,
     }),

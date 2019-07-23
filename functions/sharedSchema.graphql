@@ -5,12 +5,16 @@ type Person {
   fullName: String
   email: String
   skills: [Skill]
+  createdAt(format: String): String
+  updatedAt(format: String): String
 }
 
 type Skill {
   id: ID!
   name: String
   type: SkillType
+  createdAt(format: String): String
+  updatedAt(format: String): String
 }
 
 enum SkillType {

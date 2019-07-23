@@ -1,3 +1,4 @@
+const formatDate = require('date-fns/format')
 const resolvers = {
   Query: {
     async getPerson(parent, args, {models}) {
@@ -62,6 +63,26 @@ const resolvers = {
       const {Skill} = models
       const skills = await Skill.find({_id: parent.skills})
       return skills
+    },
+    createdAt: (parent, {format}) => {
+      let date = parent.createdAt
+      if (!format) return date
+      try {
+        date = formatDate(date, format)
+      } catch (err) {
+        throw new Error(err)
+      }
+      return date
+    },
+    updatedAt: (parent, {format}) => {
+      let date = parent.updatedAt
+      if (!format) return date
+      try {
+        date = formatDate(date, format)
+      } catch (err) {
+        throw new Error(err)
+      }
+      return date
     },
   },
 }

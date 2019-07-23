@@ -1,5 +1,5 @@
 const merge = require('lodash.merge')
-const resolvers = require('../sharedResolvers')
+const resolvers = require('./sharedResolvers')
 const {models} = require('mongo')
 
 const federatedResolvers = {

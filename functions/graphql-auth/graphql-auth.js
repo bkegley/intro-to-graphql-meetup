@@ -4,7 +4,7 @@ const {ApolloServer} = require('apollo-server-lambda')
 const {mergeSchemas} = require('graphql-tools')
 const {createMongoConnection, models} = require('mongo')
 
-const sharedSchema = require('../sharedSchema.graphql')
+const sharedSchema = require('./sharedSchema.graphql')
 const localSchema = require('./schema.graphql')
 const resolvers = require('./resolvers')
 

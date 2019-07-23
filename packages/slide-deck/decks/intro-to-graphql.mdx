@@ -1,0 +1,60 @@
+import {yellow, future, syntaxHighlighterPrism} from '@mdx-deck/themes'
+import {Split, SplitRight, Appear} from 'gatsby-theme-mdx-deck'
+
+export const themes = [syntaxHighlighterPrism, future]
+
+# Intro GraphQL
+
+Bryan Kegley
+
+---
+
+<Split>
+
+# What is GraphQL?
+
+```graphql
+type Person {
+  firstName: String
+  lastName: String
+}
+```
+
+</Split>
+
+---
+
+# Examples
+
+[Simple](localhost:34567/graphql-simple)
+
+---
+
+# GraphQL v. REST
+
+<div>
+  <table>
+    <tr>
+      <th>GraphQL</th>
+      <th>REST</th>
+    </tr>
+    <Appear>
+      <tr>
+        <td>GraphQL</td>
+        <td>REST</td>
+      </tr>
+      <tr>
+        <td>GraphQL</td>
+        <td>REST</td>
+      </tr>
+      <tr>
+        <td>GraphQL</td>
+        <td>REST</td>
+      </tr>
+      <tr>
+        <td>GraphQL</td>
+        <td>REST</td>
+      </tr>
+    </Appear>
+  </table>
+</div>

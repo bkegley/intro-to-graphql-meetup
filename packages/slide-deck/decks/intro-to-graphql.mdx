@@ -1,60 +1,279 @@
-import {yellow, future, syntaxHighlighterPrism} from '@mdx-deck/themes'
+import {jsx} from 'theme-ui'
+import {yellow, code, prism} from '@mdx-deck/themes'
 import {Split, SplitRight, Appear} from 'gatsby-theme-mdx-deck'
 
-export const themes = [syntaxHighlighterPrism, future]
+export const themes = [prism, code]
 
 # Intro GraphQL
 
 Bryan Kegley
 
----
+[GitHub repo](https://github.com/bkegley/intro-to-graphql-meetup)
 
-<Split>
+---
 
 # What is GraphQL?
 
+<Appear>
+
+<div>
+
+A strongly typed query language
+
+to describe and distribute your data
+
+</div>
+</Appear>
+
+---
+
+# GraphQL Vocabulary
+
+Wanna follow along?
+
+[Click](https://sfdevs-graphql.netlify.com/.netlify/functions/graphql-simple)
+
+---
+
+## Queries
+
 ```graphql
-type Person {
-  firstName: String
-  lastName: String
+query getPersonQuery {
+  getPerson {
+
+
+
+  }
 }
 ```
 
-</Split>
+---
+
+## Fields
+
+```graphql
+query getPersonQuery {
+  getPerson {
+    firstName
+    fullName
+    updatedAt
+  }
+}
+```
 
 ---
 
-# Examples
+## Arguments
 
-[Simple](localhost:34567/graphql-simple)
+```graphql
+query getPersonQuery {
+  getPerson(id: 1) {
+    firstName
+    fullName
+    updatedAt
+  }
+}
+```
 
 ---
 
-# GraphQL v. REST
+## Arguments pt.2
 
-<div>
-  <table>
-    <tr>
-      <th>GraphQL</th>
-      <th>REST</th>
-    </tr>
-    <Appear>
-      <tr>
-        <td>GraphQL</td>
-        <td>REST</td>
-      </tr>
-      <tr>
-        <td>GraphQL</td>
-        <td>REST</td>
-      </tr>
-      <tr>
-        <td>GraphQL</td>
-        <td>REST</td>
-      </tr>
-      <tr>
-        <td>GraphQL</td>
-        <td>REST</td>
-      </tr>
-    </Appear>
-  </table>
-</div>
+```graphql
+query getPersonQuery {
+  getPerson(id: 1) {
+    firstName
+    fullName
+    updatedAt(format: "YYYY-MM-DD")
+  }
+}
+```
+
+---
+
+## Variables
+
+```graphql
+query getPersonQuery($id: ID!) {
+  getPerson(id: $id) {
+    firstName
+    fullName
+    updatedAt(format: "YYYY-MM-DD")
+  }
+}
+```
+
+---
+
+## Directives
+
+```graphql
+query getPersonQuery($id: ID!, $incName: Boolean!) {
+  getPerson(id: $id) {
+    firstName
+    fullName @include(if: $incName)
+    updatedAt(format: "YYYY-MM-DD")
+  }
+}
+```
+
+---
+
+## Aliases
+
+```graphql
+query getPersonQuery($id: ID!, $incName: Boolean!) {
+  bryanKegley: getPerson(id: $id) {
+    firstName
+    fullName @include(if: $incName)
+    updatedAt(format: "YYYY-MM-DD")
+  }
+}
+```
+
+---
+
+## Fragments
+
+```graphql
+query getPersonsQuery($id: ID!, $incName: Boolean!) {
+  bryanKegley: getPerson(id: $id) {
+    ...personFields
+  }
+}
+
+fragment personFields on Person {
+  firstName
+  fullName @include(if: $incName)
+  updatedAt(format: "YYYY-MM-DD")
+}
+```
+
+---
+
+## Mutations
+
+```graphql
+mutation createPersonMutation {
+  createPerson(input: {firstName: "Johnny", lastName: "Appleseed"}) {
+    firstName
+    fullName
+    updatedAt
+  }
+}
+
+fragment personFields on Person {
+  firstName
+  fullName @include(if: $incName)
+  updatedAt(format: "YYYY-MM-DD")
+}
+```
+
+---
+
+# The AST
+
+# and Resovlers
+
+---
+
+## What is an AST?
+
+---
+
+## Abstract Syntax Tree
+
+Used in:
+
+- linters
+- compilers/transpilers
+
+<Appear>
+
+[AST explorer](https://astexplorer.net/)
+
+</Appear>
+
+---
+
+# Resolvers
+
+Map queries, mutations, and fields to functionality
+
+---
+
+# Why GraphQL?
+
+<ul>
+
+<Appear>
+
+  <li>Type System</li>
+  <li>Self Documenting</li>
+  <li>Fetch What You Need</li>
+  <li>Decouple Frontend and Backend</li>
+
+</Appear>
+
+</ul>
+
+---
+
+# Why Not GraphQL?
+
+<ul>
+
+<Appear>
+
+  <li>Not Ideal For Small APIs</li>
+  <li>Caching</li>
+  <li>Frontend Control Over Data Fetching</li>
+  <li>Recursive Queries</li>
+
+</Appear>
+
+</ul>
+
+---
+
+# Thinking in GraphQL
+
+<ul>
+
+<Appear>
+
+  <li>Not Tables, But Types</li>
+  <li>Graph For UIs</li>
+  <li>Progressive Adoption</li>
+
+</Appear>
+
+</ul>
+
+---
+
+# Some Fun With GraphQL
+
+---
+
+## Authentication/Authorization
+
+[Graphiql](https://sfdevs-graphql.netlify.com/.netlify/functions/graphql-auth)
+
+---
+
+## Wrapping REST
+
+[Graphiql](https://sfdevs-graphql.netlify.com/.netlify/functions/graphql-pokemon)
+
+---
+
+## GraphQL and Microservices
+
+[Graphiql](https://sfdevs-graphql.netlify.com/.netlify/functions/graphql-gateway)
+
+---
+
+# Thank you!
+
+[GitHub repo](https://github.com/bkegley/intro-to-graphql-meetup)

@@ -14,6 +14,7 @@
   "dependencies": {
     "apollo-server-lambda": "^2.7.0",
     "graphql": "^14.4.2",
-    "graphql-import-node": "^0.0.4"
+    "graphql-import-node": "^0.0.4",
+    "mongo": "*"
   }
 }

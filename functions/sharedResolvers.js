@@ -1,18 +1,67 @@
 const resolvers = {
   Query: {
-    getPerson(parent, args, context, info) {
-      return context.data.persons.find(person => person.id === args.id)
+    async getPerson(parent, args, {models}) {
+      const {Person} = models
+      const person = await Person.findById(args.id)
+      return person
     },
-    listPersons(parent, args, context, info) {
-      return context.data.persons
+    async listPersons(parent, args, {models}) {
+      const {Person} = models
+      const persons = await Person.find(args)
+      return persons
+    },
+    async getSkill(parent, args, {models}) {
+      const {Skill} = models
+      const skill = await Skill.findById(args.id)
+      return skill
+    },
+    async listSkills(parent, args, {models}) {
+      const {Skill} = models
+      const skills = await Skill.find(args)
+      return skills
+    },
+  },
+  Mutation: {
+    async createPerson(parent, {input}, {models}) {
+      const {Person} = models
+      const person = await new Person(input).save()
+      return person
+    },
+    async updatePerson(parent, {id, input}, {models}) {
+      const {Person} = models
+      const person = await Person.findByIdAndUpdate(id, input, {new: true})
+      return person
+    },
+    async deletePerson(parent, {id}, {models}) {
+      const {Person} = models
+      const person = await Person.findByIdAndDelete(id)
+      return person
+    },
+
+    async createSkill(parent, {input}, {models}) {
+      const {Skill} = models
+      const skill = await new Skill(input).save()
+      return skill
+    },
+    async updateSkill(parent, {id, input}, {models}) {
+      const {Skill} = models
+      const skill = await Skill.findByIdAndUpdate(id, input, {new: true})
+      return skill
+    },
+    async deleteSkill(parent, {id}, {models}) {
+      const {Skill} = models
+      const skill = await Skill.findByIdAndDelete(id)
+      return skill
     },
   },
   Person: {
     fullName: parent => {
       return `${parent.firstName} ${parent.lastName}`
     },
-    pets: (parent, args, context) => {
-      return context.data.pets.filter(pet => parent.pets.includes(pet.id))
+    skills: async (parent, args, {models}) => {
+      const {Skill} = models
+      const skills = await Skill.find({_id: parent.skills})
+      return skills
     },
   },
 }

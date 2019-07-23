@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0"
   }
 }

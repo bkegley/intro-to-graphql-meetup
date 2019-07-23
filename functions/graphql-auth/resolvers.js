@@ -1,5 +1,5 @@
 const merge = require('lodash.merge')
-const sharedResolvers = require('../sharedResolvers')
+const sharedResolvers = require('./sharedResolvers')
 
 const resolvers = {
   Query: {

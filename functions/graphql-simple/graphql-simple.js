@@ -3,8 +3,8 @@ require('graphql-import-node/register')
 const {ApolloServer} = require('apollo-server-lambda')
 const {createMongoConnection, models} = require('mongo')
 
-const schema = require('../sharedSchema.graphql')
-const resolvers = require('../sharedResolvers')
+const schema = require('./sharedSchema.graphql')
+const resolvers = require('./sharedResolvers')
 
 let cachedDb
 

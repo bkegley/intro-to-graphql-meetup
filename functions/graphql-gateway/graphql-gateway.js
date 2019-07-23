@@ -17,7 +17,12 @@ const gateway = new ApolloGateway({
 exports.handler = async function(event, context) {
   const {schema, executor} = await gateway.load()
 
-  const server = new ApolloServer({schema, executor})
+  const server = new ApolloServer({
+    schema,
+    executor,
+    playground: true,
+    introspection: true,
+  })
 
   return new Promise((resolve, reject) => {
     const callback = (err, args) => (err ? reject(err) : resolve(args))

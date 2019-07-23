@@ -42,6 +42,8 @@ exports.handler = async function(event, context) {
         user,
       }
     },
+    playground: true,
+    introspection: true,
   })
 
   return new Promise((resolve, reject) => {

@@ -29,6 +29,8 @@ exports.handler = async function(event, context) {
     context: () => ({
       models,
     }),
+    playground: true,
+    introspection: true,
   })
 
   return new Promise((resolve, reject) => {

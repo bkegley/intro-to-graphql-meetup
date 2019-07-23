@@ -11,7 +11,7 @@ const resolvers = {
     fullName: parent => {
       return `${parent.firstName} ${parent.lastName}`
     },
-    pets: parent => {
+    pets: (parent, args, context) => {
       return context.data.pets.filter(pet => parent.pets.includes(pet.id))
     },
   },

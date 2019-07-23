@@ -4,22 +4,58 @@ type Person @key(fields: "id") {
   lastName: String
   fullName: String
   email: String
-  pets: [Pet]
+  skills: [Skill]
 }
 
-type Pet {
+type Skill {
   id: ID!
   name: String
-  type: PetType
+  type: SkillType
 }
 
-enum PetType {
-  dog
-  cat
-  turtle
+enum SkillType {
+  work
+  personal
+  misc
+}
+
+input CreatePersonInput {
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input UpdatePersonInput {
+  firstName: String
+  lastName: String
+  email: String
+  skills: [ID!]
+}
+
+input CreateSkillInput {
+  name: String
+  type: SkillType
+}
+
+input UpdateSkillInput {
+  name: String
+  type: SkillType
 }
 
 type Query {
   getPerson(id: ID!): Person
   listPersons: [Person]
+
+  getSkill(id: ID!): Skill
+  listSkills: [Skill]
+}
+
+type Mutation {
+  createPerson(input: CreatePersonInput): Person
+  updatePerson(id: ID!, input: UpdatePersonInput): Person
+  deletePerson(id: ID!): Person
+
+  createSkill(input: CreateSkillInput): Skill
+  updateSkill(id: ID!, input: UpdateSkillInput): Skill
+  deleteSkill(id: ID!): Skill
 }

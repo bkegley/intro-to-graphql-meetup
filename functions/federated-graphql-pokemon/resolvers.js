@@ -23,12 +23,26 @@ const resolvers = {
       }
     },
   },
+  Mutation: {
+    async updatePersonsPokemon(parent, {id, input}, {models}) {
+      const {Person} = models
+      const person = await Person.findByIdAndUpdate(id, input, {new: true})
+      return person
+    },
+  },
   Person: {
-    async pokemon(parent) {
-      const pokemon = await P.getPokemonByName(parent.id)
-        .then(res => res)
-        .catch(err => err)
-      return pokemon
+    async pokemon(parent, args, {models}) {
+      const {Person} = models
+      const person = await Person.findById(parent.id)
+      const pokemons = person.pokemon
+        ? person.pokemon.map(async pokemonId => {
+            const pokemon = await P.getPokemonByName(pokemonId.toString())
+              .then(res => res)
+              .catch(err => err)
+            return pokemon
+          })
+        : null
+      return pokemons
     },
   },
 }

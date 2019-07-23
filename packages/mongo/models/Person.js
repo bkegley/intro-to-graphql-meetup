@@ -24,6 +24,7 @@ const PersonSchema = new Schema(
         ref: 'guiltyPleasure',
       },
     ],
+    pokemon: [{type: String}],
   },
   {timestamps: true},
 )

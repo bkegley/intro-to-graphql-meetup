@@ -1,11 +1,13 @@
 const merge = require('lodash.merge')
 const resolvers = require('../sharedResolvers')
+const {models} = require('mongo')
 
 const federatedResolvers = {
   Person: {
-    __resolveReference(parent, args, context) {
-      console.log({context})
-      return context.data.persons.find(person => person.id === parent.id)
+    async __resolveReference(parent) {
+      const {Person} = models
+      const person = await Person.findById(parent.id)
+      return person
     },
   },
 }

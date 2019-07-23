@@ -16,12 +16,20 @@ type PokemonConnection {
   results: [Pokemon]
 }
 
+input UpdatePersonsPokemonInput {
+  pokemon: [ID!]
+}
+
 type Query {
   getPokemon(id: ID!): Pokemon
   listPokemons(limit: Int, offset: Int): PokemonConnection
 }
 
+extend type Mutation {
+  updatePersonsPokemon(id: ID!, input: UpdatePersonsPokemonInput): Person
+}
+
 extend type Person @key(fields: "id") {
   id: ID! @external
-  pokemon: Pokemon
+  pokemon: [Pokemon]
 }

@@ -1,3 +1,49 @@
+type GuiltyPleasure {
+  id: ID!
+  name: String
+  shameLevel: ShameLevel
+}
+
+enum ShameLevel {
+  low
+  medium
+  high
+}
+
 extend type Person {
-  secret: String
+  guiltyPleasures: [GuiltyPleasure]
+}
+
+input CreateGuiltyPleasureInput {
+  name: String
+  shameLevel: ShameLevel
+}
+
+input UpdateGuiltyPleasureInput {
+  name: String
+  shameLevel: ShameLevel
+}
+
+input UpdateMeInput {
+  firstName: String
+  lastName: String
+  email: String
+  skills: [ID!]
+  guiltyPleasures: [ID!]
+}
+
+extend type Query {
+  getGuiltyPleasure(id: ID!): GuiltyPleasure
+  listGuiltyPleasures: [GuiltyPleasure]
+  me: Person
+}
+
+extend type Mutation {
+  createGuiltyPleasure(input: CreateGuiltyPleasureInput): GuiltyPleasure
+  updateGuiltyPleasure(
+    id: ID!
+    input: UpdateGuiltyPleasureInput
+  ): GuiltyPleasure
+  deleteGuiltyPleasure(id: ID!): GuiltyPleasure
+  updateMe(input: UpdateMeInput): Person
 }

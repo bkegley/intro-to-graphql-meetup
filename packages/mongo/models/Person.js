@@ -18,6 +18,12 @@ const PersonSchema = new Schema(
         ref: 'skill',
       },
     ],
+    guiltyPleasures: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'guiltyPleasure',
+      },
+    ],
   },
   {timestamps: true},
 )

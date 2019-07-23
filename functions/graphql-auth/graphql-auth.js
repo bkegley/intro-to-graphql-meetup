@@ -1,28 +1,47 @@
+require('dotenv').config()
 require('graphql-import-node/register')
-const {mergeSchemas} = require('graphql-tools')
 const {ApolloServer} = require('apollo-server-lambda')
-const data = require('../data.json')
+const {mergeSchemas} = require('graphql-tools')
+const {createMongoConnection, models} = require('mongo')
 
-const localSchema = require('./schema.graphql')
 const sharedSchema = require('../sharedSchema.graphql')
-const resolvers = require('../sharedResolvers')
+const localSchema = require('./schema.graphql')
+const resolvers = require('./resolvers')
+
+let cachedDb
+
+async function connectToDatabase(uri) {
+  if (cachedDb) {
+    return Promise.resolve(cachedDb)
+  }
+
+  const connection = await createMongoConnection(uri)
+  cachedDb = connection
+  return cachedDb
+}
 
 exports.handler = async function(event, context) {
-  const schemas = [localSchema, sharedSchema]
+  // connect to cached or remote db
+  context.callbackWaitsForEmptyEventLoop = false
+  await connectToDatabase(process.env.MONGODB_CONNECTION)
 
+  const schemas = [localSchema, sharedSchema]
   const schema = mergeSchemas({schemas, resolvers})
 
   const server = new ApolloServer({
     schema,
-    context: ({event}) => ({
-      data,
-      user:
-        event.headers && event.headers.authorization
-          ? data.persons.find(
-              person => person.token === event.headers.authorization,
-            )
-          : null,
-    }),
+    context: async ({event}) => {
+      let user = null
+      try {
+        user = await models.Person.findById(event.headers.authorization)
+      } catch (err) {
+        err
+      }
+      return {
+        models,
+        user,
+      }
+    },
   })
 
   return new Promise((resolve, reject) => {

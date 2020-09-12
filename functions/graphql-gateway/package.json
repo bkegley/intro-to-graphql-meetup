@@ -22,6 +22,6 @@
     "graphql-import-node": "^0.0.4",
     "graphql-tools": "^4.0.4",
     "mongo": "*",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.6.1"
   }
 }
